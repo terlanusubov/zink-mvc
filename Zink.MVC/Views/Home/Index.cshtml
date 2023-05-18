@@ -1,0 +1,51 @@
+﻿@using Zink.MVC.ViewModels;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model HomeViewModel
+
+<section class="section1 container-fluid" style="padding: 0;">
+    <div class="container-fluid p-0">
+        <video autoplay muted loop id="myVideo" src="~/assets/images/_import_60e68dd9b07d98.30592310.mp4">
+            @*<source src="~/assets/images/_import_60e68dd9b07d98.30592310.mp4" type="video/mp4">*@
+        </video>
+        <div class="section1-title">
+            <h1>SEVGİNİN RƏNGİ İLƏ DİVARLARI BOYAYIN!</h1>
+            @*<p>
+            Jotun is one of the world's leading paints and coatings manufacturers, combining the best quality with
+            constant innovation and creativity. For almost a century, we have protected all types of property - from
+            iconic buildings to beautiful homes.
+            </p>*@
+        </div>
+    </div>
+</section>
+
+<!-- SECTION2 -->
+
+<section class="section2 container-fluid">
+    <h3>Select your industry</h3>
+    <div class="s2-boxs row">
+        @foreach (Category category in Model.Category)
+        {
+            <div class="s2-box col-lg-4 col-md-6 col-sm-6 col-12">
+                <a asp-controller="Product" asp-action="Index" asp-route-categoryId="@category.Id">
+                    <div class="boxx rounded-1">
+                        <div class="s2-img">
+                            <img style="object-fit: cover;" class="rounded-top-1" src="~/uploads/categories/@category.Image" alt="">
+                        </div>
+                        <div class="s2-box-title">
+                            <h4>@category.Name</h4>
+                            <p>
+                                @category.Description
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+        <!-- BOX1 -->
+
+
+    </div>
+</section>

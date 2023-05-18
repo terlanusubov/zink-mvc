@@ -1,0 +1,52 @@
+﻿@using Zink.MVC.ViewModels;
+
+@{
+    ViewData["Title"] = "WishList";
+}
+
+@model ProductViewModel
+
+<section class="MyList">
+    <div class="container p-0">
+        <div class="row">
+            <div class="Mylistheader col-12">
+                <h1>My list</h1>
+                <p>
+                    Below are the products you’ve saved. To see them on your next
+                    visit, go to cookie settings in the footer and accept functional
+                    cookies.
+                </p>
+            </div>
+            <div class="mylist__main container">
+                <div class="mylist__container row justify-content-start">
+                    @foreach (Product product in Model.Products)
+                    {
+                        <div class="product_card col-lg-3 col-md-6 col-sm-12 p-3 position-relative">
+                            <a class="favorite d-flex align-items-center justify-content-center" asp-controller="Product" asp-action="RemoveCookie" asp-route-id="@product.Id" style="position: absolute; top: 45px; left: 30px; border: 0.5px solid black; width: 25px; height: 25px; border-radius: 50%;"><i class="fa-solid fa-heart fa-xs" style="color: red;"></i></a>
+
+                            <a asp-action="detail" asp-controller="product" asp-route-productId="@product.Id" class="product_card col-lg-4 col-md-6 col-sm-12 p-3">
+                                <div class="product_image" style="height: 192px; background-color: #F7F7F7;"><img class="img-fluid" style="height: 100%; width: 100%; object-fit: cover;" src="~/uploads/products/@product.Image" alt=""></div>
+                                <div class="product_information">
+                                    <div class="product_type text-black-50">@product.Category.Name</div>
+                                    <div class="product_name" style="font-weight: 600;">@product.Name</div>
+                                    <div class="product_properties" style="height: 100px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;  overflow: hidden; text-overflow: ellipsis;">@product.Description</div>
+                                    @*<div class="product_features">
+                                <div class="feature text-black-50">-Advance colour performance</div>
+                                <div class="feature text-black-50">-Long lasting protection</div>
+                                <div class="feature text-black-50">-Maximum crack protection</div>
+
+
+                                </div>*@
+                                </div>
+
+                            </a>
+                        </div>
+                    }
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

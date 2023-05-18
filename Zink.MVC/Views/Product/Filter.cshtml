@@ -1,0 +1,91 @@
+﻿@using Zink.MVC.ViewModels;
+
+@{
+    ViewData["Title"] = "Filter";
+}
+
+@model ProductViewModel
+<section class="products_page">
+    <div class="products_location">
+        <span class="main">Industries</span>
+        <i class="fa-solid fa-chevron-right mx-1"></i>
+        <span class="categorie">Architecture and design</span>
+        <i class="fa-solid fa-chevron-right mx-1"></i>
+        <span class="sub_categorie">Products</span>
+    </div>
+    <div class="products_greeting">
+        <h1 class="products_message text-center">Products</h1>
+        <p class="products_text text-center pt-4">Browse products for architecture and design industries.</p>
+    </div>
+    <div class="products_showing_rate">
+        Showing
+        <span class="displaying_products">18</span>
+        of
+        <span class="restof_products">111</span>
+        items
+    </div>
+    <div class="row products_main">
+        <div class="search_and_filter col-md-12 col-lg-3 px-md-0 px-sm-0 pt-3">
+            <div class="search_bar mx-lg-4 position-relative">
+                <input type="text" placeholder="Search For Products">
+                <i class="fas fa-search position-absolute top-50 translate-middle-y"></i>
+            </div>
+
+            <div class="accordion accordion-flush category-accordion mt-3" id="accordionFlushExample" style="margin-right: 24px;">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Kateqoriyalar
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            @foreach (var item in Model.Categories)
+                            {
+                            <p><input type="checkbox"/><label>@item.Name</label></p>
+                                
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products_container  col-md-12 col-lg-9 row justify-content-start  ">
+            @foreach (Product product in Model.Products)
+            {
+
+                <div class="product_card col-lg-4 col-md-6 col-sm-12 p-3">
+                    <a class="favorite" asp-controller="Product" asp-action="AddWishList" asp-route-productId="@product.Id"><i class="fa-solid fa-heart fa-xs"></i></a>
+
+                    <a asp-controller="Product" asp-action="Detail" asp-route-productId="@product.Id">
+                        <div class="product_image" style="height: 192px; background-color: #F7F7F7;"><img class="img-fluid" style="height: 100%; width: 100%; object-fit: cover;" src="~/uploads/products/@product.Image" alt=""></div>
+                        <div class="product_information">
+                            <div class="product_type text-black-50">@product.Category.Name</div>
+                            <div class="product_name" style="font-weight: 600;">@product.Name</div>
+                            <div class="product_properties" style="height: 100px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;  overflow: hidden; text-overflow: ellipsis;">@product.Description</div>
+                            @*<div class="product_features">
+                        <div class="feature text-black-50">-Advance colour performance</div>
+                        <div class="feature text-black-50">-Long lasting protection</div>
+                        <div class="feature text-black-50">-Maximum crack protection</div>
+
+                        </div>*@
+                        </div>
+
+                    </a>
+                </div>
+            }
+
+            <div class="col-12 products_bottom d-flex justify-content-center flex-column align-items-center">
+                <button class="show_more_btn mb-4 mt-5">Show More Products</button>
+                <div class="products_showing_rate px-0">
+                    Showing
+                    <span class="displaying_products">18</span>
+                    of
+                    <span class="restof_products">111</span>
+                    items
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

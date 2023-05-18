@@ -1,0 +1,70 @@
+﻿@using Zink.MVC.ViewModels;
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+@model FooterViewModel
+
+<footer class="footer footer-reg">
+    <div class="container">
+        <!-- first row -->
+        <div class="row list__footer">
+            <!-- logo -->
+            <div class="col-6 flex-column">
+                <div class="footer__logo logo">
+                    <div class="footer-image">
+                        <img src="~/assets/images/zink logo png.png" alt="Zink logo" />
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation links -->
+            <nav class="col-6 list__nav">
+                <div class="row list__nav">
+                    <!-- first column of links -->
+                    <div class="col col-6 links">
+                        <ul class="list">
+                            <li><a class="footer__link" href="#">About Jotun</a></li>
+                            <li>
+                                <a class="footer__link" href="#">Technical documents</a>
+                            </li>
+                            <li><a class="footer__link" href="#">Sustainability</a></li>
+                            <li><a class="footer__link" href="#">Career</a></li>
+                            <li><a class="footer__link" href="#">News</a></li>
+                            <li><a class="footer__link" href="#">Contact us</a></li>
+                            <li><a class="footer__link" href="#">Media centre</a></li>
+                        </ul>
+                    </div>
+                    <!-- second column of links -->
+                    <div class="col-6 links">
+                        <ul class="list">
+                            <li><a class="footer__link" href="#">Privacy policy</a></li>
+                            <li>
+                                <a class="footer__link" href="#">Terms and conditions</a>
+                            </li>
+                            <li><a class="footer__link" href="#">Cookie policy</a></li>
+                            <li><a class="footer__link" href="#">Cookie settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Social Footer -->
+        <div class="socialFooter">
+            <ul class="social list">
+                @foreach (SocialMedia media in Model.SocialMedia)
+                {
+                    <li>
+                        <a href="@media.Url">@Html.Raw(media.Icon)</a>
+                    </li>
+                }
+                
+                
+            </ul>
+        </div>
+        <!-- LastFooter  -->
+        <div class="lastFooter">
+            <p>2023 © Zink All Rights Reserved</p>
+        </div>
+    </div>
+</footer>

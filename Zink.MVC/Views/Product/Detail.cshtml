@@ -1,0 +1,66 @@
+﻿@using Zink.MVC.ViewModels;
+
+@{
+    ViewData["Title"] = "Detail";
+}
+@model DetailViewModel
+<div class="products_location">
+
+</div>
+<div class="product_detail d-flex flex-column justify-content-center">
+    <div class="product_name_image row">
+        <div class="product_description col-md-8 col-sm-12  ">
+            <div class="product_name">@Model.Product.Name</div>
+            <button class="save_product_btn"><i class="fa-regular fa-heart fa-xs"></i><a asp-controller="Product" asp-action="AddWishlist" asp-route-productId="@Model.Product.Id" >save</a></button>
+            <div class="price mt-4">
+                <span style="color: red; font-size: 55px; font-weight: 600;">@Model.Product.Price.ToString("#.##")</span><span style="font-size: 40px; font-weight: 700;"> ₼</span>
+            </div>
+        </div>
+        <div class="product_image d-flex align-items-center justify-content-center col-md-4 col-sm-12">
+            <img class="img-fluid"
+                 src="~/uploads/products/@Model.Product.Image" alt="">
+        </div>
+    </div>
+</div>
+<div class="product_about row">
+    <div class="main_description col-lg-6 col-md-12 text-lg-start">
+        <h1 class="title mb-3">Məhsul haqqında</h1>
+        @Model.Product.Description
+    </div>
+   
+    <div class="related_products px-0 mt-5">
+        <h1 class="related_products_message">Əlqəli Məhsullar</h1>
+        <div class="related_products_container row m-0">
+            <div class="product_card col-lg-3 col-md-6 col-sm-12 p-3">
+                <div class="product_card_border">
+                    <a class="favorite" href="#"><i class="fa-solid fa-heart fa-xs"></i></a>
+
+                    <a href="#">
+                        <div class="product_image" style="height: 192px; background-color: #F7F7F7;">
+                            <img class="img-fluid" style="height: 100%; width: 100%; object-fit: cover;"
+                                 src="~/assets/images/jotashield-can.webp" alt="">
+                        </div>
+                        <div class="product_information">
+                            <div class="product_type text-black-50">Boya</div>
+                            <div class="product_name" style="font-weight: 600;">name</div>
+                            <div class="product_properties"
+                                 style="height: 100px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;  overflow: hidden; text-overflow: ellipsis;">
+                                Description
+                            </div>
+                            @*<div class="product_features">
+                            <div class="feature text-black-50">-Advance colour performance</div>
+                            <div class="feature text-black-50">-Long lasting protection</div>
+                            <div class="feature text-black-50">-Maximum crack protection</div>
+
+                            </div>*@
+                        </div>
+
+                    </a>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+

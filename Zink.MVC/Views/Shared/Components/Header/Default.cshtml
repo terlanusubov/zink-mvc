@@ -1,0 +1,211 @@
+﻿@using Zink.MVC.ViewModels;
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+@model HeaderViewModel
+
+<header class="container-fluid d-flex align-content-center justify-content-between">
+        <div class="menu ">
+            <nav class="navbar">
+                <a asp-controller="Home" asp-action="Index" class="brand-title">
+                    <img src="~/assets/images/zink logo png.png" alt="">
+                </a>
+                <a href="#" class="toggle-button">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="rs-menu">
+                    <ul class="menu-list">
+                        <li><a asp-controller="Home" asp-action="Index">Ana Səhifə</a></li>
+                        <li><a class="show-btn" href="#">Kateqoriyalar</a></li>
+                        <li><a asp-controller="About" asp-action="Index">Haqqımızda</a></li>
+                        <li><a asp-controller="Contact" asp-action="Index">Əlaqə</a></li>
+                        <a asp-controller="Product" asp-action="Wishlist" class="favorite-icon" style="color: black;">
+                            <i class="fa-regular fa-heart" style="color: black;"></i>
+                            <span>@Model.WishItems</span>
+                        </a>
+                    </ul>
+                </div>
+                <div class="navbar-links dropdown-content" style="z-index: 999;">
+                    <div class="nav-left">
+                        <!-- Menu -->
+                        <ul class="left-menu">
+                            @foreach (var item in Model.Categories.Where(x => x.ParentId == 0))
+                        {
+                            <li>
+                                <a data-list="1" class="dropdown-item" asp-controller="Product" asp-action="Index" asp-route-categoryId="@item.Id">
+                                    @item.Name<i class="fa-solid fa-chevron-right"></i></a>
+                                <ul class="show-list">
+                                    @foreach (var subcategory in Model.Categories.Where(x => x.ParentId == item.Id))
+                                    {
+                                    <li><a asp-controller="Product" asp-action="Filter" asp-route-categoryId="@subcategory.Id">@subcategory.Name
+                                        </a></li>
+                                    }
+                                    
+                                    <a class="link-end" asp-controller="Product" asp-action="Index" asp-route-categoryId="@item.Id"><i class="fa-solid fa-circle-arrow-right"></i> Məhsullara baxın</a>
+                                </ul>
+                            </li>
+                            
+                        }
+                            
+                        </ul>
+
+
+                        <!-- Responsive menu -->
+                        <ul class="left-menues">
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                                <!-- Architecture and design -->
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Architecture and design
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="show-lists">
+                                                <li><a href="#">Architecture and design overview
+                                                    </a></li>
+                                                <li><a href="#">Beautiful buildings
+                                                    </a></li>
+                                                <li><a href="#">Furniture and design</a></li>
+                                                <li><a href="#">Iconic bridges</a></li>
+                                                <a class="link-end" href="#"><i
+                                                        class="fa-solid fa-circle-arrow-right"></i> Browse
+                                                    products for
+                                                    architecture and design</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  Infrastructure -->
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Infrastructure
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="show-lists">
+                                                <li><a href="#">Infrastructure overview
+                                                    </a></li>
+                                                <li><a href="#">Airports
+                                                    </a></li>
+                                                <li><a href="#">Civil infrastructure</a></li>
+                                                <li><a href="#">Water works</a></li>
+                                                <li><a href="#">Port and harbours</a></li>
+                                                <li><a href="#">Bridges</a></li>
+                                                <li><a href="#">Buildings</a></li>
+                                                <a class="link-end" href="#"><i
+                                                        class="fa-solid fa-circle-arrow-right"></i> Browse
+                                                    products for architecture and design</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Light industry -->
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                            aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Light industry
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="show-lists">
+                                                <li><a href="#">Light industry overview
+                                                    </a></li>
+                                                <li><a href="#">Auto parts
+                                                    </a></li>
+                                                <li><a href="#">Appliances</a></li>
+                                                <li><a href="#">Furniture</a></li>
+                                                <a class="link-end" href="#"><i
+                                                        class="fa-solid fa-circle-arrow-right"></i> Browse
+                                                    products for
+                                                    architecture and design</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  Shipping -->
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingFour">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFour"
+                                            aria-expanded="false" aria-controls="flush-collapseFour">
+                                            Shipping
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="show-lists">
+                                                <li><a href="#">Shipping overview
+                                                    </a></li>
+                                                <li><a href="#">Carriers and cargo
+                                                    </a></li>
+                                                <li><a href="#">Passenger services</a></li>
+                                                <li><a href="#">Supply</a></li>
+                                                <a class="link-end" href="#"><i
+                                                        class="fa-solid fa-circle-arrow-right"></i> Browse
+                                                    products architecture and design</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--  Energy -->
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingFive">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseFive"
+                                            aria-expanded="false" aria-controls="flush-collapseFive">
+                                            Energy
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFive" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="show-lists">
+                                                <li><a href="#">Energy overview
+                                                    </a></li>
+                                                <li><a href="#">Offshore oil and gas
+                                                    </a></li>
+                                                <li><a href="#">Onshore oil, gas and petrochemicals</a></li>
+                                                <li><a href="#">Refining</a></li>
+                                                <li><a href="#">Power</a></li>
+                                                <a class="link-end" href="#"><i
+                                                        class="fa-solid fa-circle-arrow-right"></i> Browse
+                                                    products architecture and design</a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    </header>

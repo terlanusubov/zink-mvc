@@ -1,0 +1,53 @@
+﻿@using Zink.MVC.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Product
+
+<div id="basic" class="col-lg-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                    <h4>Yeni Məhsul</h4>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+
+            <div class="row">
+                <div class="col-lg-6 col-12 mx-auto">
+                    <form method="post" asp-action="update" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <p style="font-size: 1.15rem;">Məhsulun adı</p>
+                            <label for="t-text" class="sr-only">Məhsulun adı...</label>
+                            <input style="margin-bottom: 20px;" id="t-text" asp-for="Name" placeholder="Məhsulun adı..." class="form-control">
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                            <p style="font-size: 1.15rem;">Məhsulun qiymeti</p>
+                            <label for="t-text" class="sr-only">Məhsulun qiymeti...</label>
+                            <input style="margin-bottom: 20px;" id="t-text" asp-for="Price" placeholder="Məhsulun qiymeti..." class="form-control">
+                            <span class="text-danger" asp-validation-for="Price"></span>
+                            <p style="font-size: 1.15rem;">Mehsul haqqında</p>
+                            <label for="t-text" class="sr-only">Text</label>
+                            <textarea style="margin-bottom: 20px;" asp-for="Description" class="form-control" placeholder="Haqqında..." id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <span class="text-danger" asp-validation-for="Description"></span>
+                            <p style="font-size: 1.15rem;">Aid olduğu kateqoriya</p>
+                            <select asp-for="CategoryId" class="form-control" asp-items="@new SelectList((List<Category>)ViewBag.Categories,nameof(Category.Id),nameof(Category.Name))">
+                            </select>
+                            <p style="font-size: 1.15rem;">Mehsul şəkli</p>
+                            <img src="~/uploads/products/@Model.Image" style="width: 150px; height: 150px; object-fit: cover;" />
+                            <div class="custom-file mb-4">
+                                <input asp-for="ImageFile" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Mehsul şəkli...</label>
+                            </div>
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                            <div asp-validation-summary="ModelOnly"></div>
+
+                            <button type="submit" class="btn btn-primary mt-3">Yadda saxla</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

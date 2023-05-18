@@ -1,0 +1,89 @@
+﻿@using Zink.MVC.ViewModels;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model ContactViewModel
+
+<section class="ContactUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <h2>Bizimlə Əlaqə</h2>
+                <p class="CAbout">
+                    Do you want to know more about our products and how we can help
+                    you? Leave your contact details here and we’ll get in touch.
+                </p>
+                <div class="information">
+                    <div class="col-lg-6 info">
+                        <div class="contact-info">
+                            <span class="value">
+                                <i class="fa-solid fa-phone"> </i>
+                                <p>@Model.Contact.PhoneNumber</p>
+                            </span>
+                        </div>
+                        <div class="contact-info">
+                            <span class="value">
+                                <i class="fa-solid fa-envelope"></i>
+                                <p>@Model.Contact.Email</p>
+                            </span>
+                        </div>
+                        <div class="contact-info">
+                            <span class="value">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <p>@Model.Contact.Address</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <form asp-controller="Contact" asp-action="Index">
+                    <div class="row">
+                        <div class="col col-6 ContactName">
+                            <label for="Name">Ad</label>
+                            <input name="Name" asp-for="@Model.Question.Name" id="Name" placeholder="Ad" />
+                            <span asp-validation-for="@Model.Question.Name"></span>
+                        </div>
+                        <div class="col col-6 ContactSurname">
+                            <label for="SurName">Soyad</label>
+                            <input name="Surname" asp-for="@Model.Question.Surname" id="SurName" placeholder="Soyad" />
+                            <span asp-validation-for="@Model.Question.Surname"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-6 ContactEmail">
+                            <label for="email">E-mail adres</label>
+                            <input name="Email" asp-for="@Model.Question.Email"
+                                   id="email"
+                                   placeholder="E-mail adres" />
+                                   <span asp-validation-for="@Model.Question.Email"></span>
+                        </div>
+                        <div class="col col-6 ContactNumber">
+                            <label for="number">Nömrə</label>
+                            <input name="Phonenumber" asp-for="@Model.Question.PhoneNumber"
+                                   id="number"
+                                   placeholder="Nömrə" />
+                            <span asp-validation-for="@Model.Question.PhoneNumber"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="message">Mesaj</label><textarea name="message"
+                                                                      id="message"
+                                                                      asp-for="@Model.Question.Message"
+                                                                      cols="0"
+                                                                      rows="0"
+                                                                      placeholder="Mesaj"></textarea>
+                        <span asp-validation-for="@Model.Question.Message"></span>
+                    </div>
+                    <div class="contact__btn">
+                        <button class="btn" type="submit">Göndər</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
